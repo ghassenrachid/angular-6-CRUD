@@ -6,19 +6,22 @@ import { ListUsersComponent } from './components/list-users/list-users.component
 import { BrowserModule }    from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { OneUserComponent } from './components/list-users/one-user/one-user.component';
+import { UserPostsComponent } from './components/user-details/user-posts/user-posts.component';
 
 @NgModule({
   declarations: [
     UserDetailsComponent,
     ListUsersComponent,
-    OneUserComponent
+    OneUserComponent,
+    UserPostsComponent
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [] 
 })
+
 export class UserModule { }

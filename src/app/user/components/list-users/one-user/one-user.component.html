@@ -1,7 +1,7 @@
-<div class="thumbnail">
-  <img src="http://placehold.it/500x300" alt="">
-    <div class="caption">
-      <h4><b>{{ user.name }}</b></h4>
-      <p><a class="btn btn-info btn-xs" role="button" (click)="goToDetails()">Détails</a></p>
+<div class="card">
+  <img class="card-img-top" src="http://i.pravatar.cc/450?img={{user.id}}" alt="image" style="width:100%">
+  <div class="card-body">
+    <h5 class="card-title">{{ user.name }}</h5>
+    <a (click)="goToDetails()" class="btn btn-dark">See Profile</a>
   </div>
 </div>

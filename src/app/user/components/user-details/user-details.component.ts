@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class UserDetailsComponent implements OnInit {
  
-  item: User;
+  user: User;
   id: number = 0;
 
     constructor(
@@ -27,7 +27,7 @@ export class UserDetailsComponent implements OnInit {
    getUserDetails() {
     this.usersService.getUserById(this.id)
     .subscribe(data => {
-      this.item = data;
+      this.user = data;
     });
   } 
 }

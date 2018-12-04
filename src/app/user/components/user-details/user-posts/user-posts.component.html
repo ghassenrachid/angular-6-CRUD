@@ -1,0 +1,17 @@
+<div class="container" id="tourpackages-carousel">
+  <h3>Les postes de {{user.name}}:</h3>
+  <br>    
+  <div class="row">
+    <div class="col-md-4 " *ngFor="let post of postList">
+      <div class="card">
+        <img class="card-img-top" src="https://via.placeholder.com/500" alt="image" style="width:100%">
+        <div class="card-body">
+          <h5 class="card-title">"{{ post.title }}"</h5>
+          <p class="card-text">{{ post.body }}</p>
+          <a class="btn btn-dark">lire la suite</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
