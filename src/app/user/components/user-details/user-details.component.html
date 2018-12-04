@@ -14,8 +14,8 @@
       Email: {{user.email}}</p>
 
       <div class="btn-group">
-        <button type="button" class="btn btn-primary">Editer</button>
-        <button type="button" class="btn btn-primary">Supprimer</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Editer</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#delModal">Supprimer</button>
       </div>
 
       <hr>
@@ -26,3 +26,69 @@
 
 </div>
 <!-- /.container -->
+
+
+<!-- Modal DELETE -->
+<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="delModalLabel">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Voulez-vous vraiment supprimer cet utilisateur?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" [disabled]="loading" class="btn btn-primary" data-dismiss="modal" (click)="delUserDetails()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal EDIT -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true" *ngIf="user !== undefined" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Editer utilisateur</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Nom & Prénom:</label>
+            <input type="text" id="name" formControlName="name" class="form-control" [(ngModel)]="user.name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                  <div *ngIf="f.name.errors.required">Username is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Username:</label>
+            <input type="text" id="username" formControlName="username" class="form-control" [(ngModel)]="user.username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+              <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                  <div *ngIf="f.username.errors.required">Username is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Email:</label>
+            <input type="text" id="email" formControlName="email" class="form-control" [(ngModel)]="user.email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+              </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>

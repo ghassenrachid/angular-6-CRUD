@@ -20,4 +20,25 @@ export class UsersService {
     return this.http.get<User>(this.configUrl + '/'+ id);
   }
 
+  delUserById(user: User){
+    fetch(this.configUrl + '/'+ user.id, {
+      method: 'DELETE'
+    })
+  }
+
+  editUserById(user: User){
+    fetch(this.configUrl + '/'+ user.id, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        name : user.name,
+        username : user.username,
+        email : user.email
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+    .then(response => response.json())
+    .then(json => console.log(json))
+  }
 }
